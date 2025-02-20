@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aircraft Fuel Calculator</title>
+    <style>
+        body {font-family: Arial, sans-serif;text-align: center;margin: 20px;padding: 0;background-color: #FFFFFF;}
+        .container {max-width: 400px;margin: auto;background: #fff;padding: 20px;border-radius: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);border: 2px solid #D71920;}
+        h2 {margin-bottom: 15px;color: #D71920;font-weight: bold;}
+        .input-group {display: flex;flex-direction: column;margin-bottom: 15px;text-align: left;}
+        label {font-weight: bold;margin-bottom: 5px;color: #000;}
+        input {padding: 12px;font-size: 16px;border: 2px solid #D71920;border-radius: 5px;width: 100%;}
+        button {width: 100%;padding: 12px;font-size: 18px;font-weight: bold;background: #D71920;color: white;border: none;border-radius: 5px;cursor: pointer;margin-top: 10px;transition: 0.3s;}
+        button:hover {background: #A2161A;}
+        #result {font-size: 18px;margin-top: 20px;font-weight: bold;color: #000;}
+        #liters {font-size: 22px;font-weight: bold;color: #D71920;margin-top: 10px;}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Aircraft Fuel Calculator</h2>
+
+        <div class="input-group">
+            <label for="minFuel">Refuel Quantity (KG):</label>
+            <input type="number" id="minFuel" placeholder="Enter refuel quantity">
+        </div>
+
+        <div class="input-group">
+            <label for="onBoard">Fuel on Board (KG):</label>
+            <input type="number" id="onBoard" placeholder="Enter fuel on board">
+        </div>
+
+        <div class="input-group">
+            <label for="density">Fuel Density (kg/L):</label>
+            <input type="number" id="density" placeholder="Enter fuel density">
+        </div>
+
+        <button onclick="calculate()">Calculate</button>
+
+        <p id="result"></p>
+        <p id="liters"></p>
+    </div>
+
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.ctrlKey && (e.key === "u" || e.key === "s" || e.key === "i" || e.key === "j")) e.preventDefault();
+        });
+
+        function calculate(){let e=parseFloat(document.getElementById("minFuel").value),t=parseFloat(document.getElementById("onBoard").value),n=parseFloat(document.getElementById("density").value);if(isNaN(e)||isNaN(t)||isNaN(n)||n<=0)return void(document.getElementById("result").innerText="Please enter valid values.");let a=e-t,l=a/n;a<=0?(document.getElementById("result").innerText="No additional fuel required.",document.getElementById("liters").innerText=""):(document.getElementById("result").innerText=`Fuel to be added: ${a.toFixed(2)} KG`,document.getElementById("liters").innerText=`${l.toFixed(2)} Liters`)}
+    </script>
+
+</body>
+</html>
